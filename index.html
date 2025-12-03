@@ -312,11 +312,16 @@
     }
 
     @media (max-width: 900px) {
-      .sidebar {
-        display: none;       /* hide sidebar */
-      }
       #app {
-        grid-template-columns: 1fr; /* map takes full width */
+        grid-template-columns: 1fr;
+        grid-template-rows: auto 1fr;
+      }
+      .sidebar {
+        border-right: none;
+        border-bottom: 1px solid #1f2937;
+      }
+      .people-panel {
+        display: none;  /* hide clickable/list section on mobile */
       }
     }
 
@@ -635,11 +640,11 @@
 
     // CLICK: update people panel
     map.on('click', 'notability-fill', (e) => {
-      // Disable clicks on mobile (sidebar hidden)
-      if (window.innerWidth < 900) {
+      // On mobile, do nothing when clicking counties (people panel is hidden)
+      if (window.innerWidth <= 900) {
         return;
       }
-  
+
       const f = e.features && e.features[0];
       if (!f) return;
 
