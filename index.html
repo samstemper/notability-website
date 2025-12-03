@@ -312,15 +312,14 @@
     }
 
     @media (max-width: 900px) {
-      #app {
-        grid-template-columns: 1fr;
-        grid-template-rows: auto 1fr;
-      }
       .sidebar {
-        border-right: none;
-        border-bottom: 1px solid #1f2937;
+        display: none;       /* hide sidebar */
+      }
+      #app {
+        grid-template-columns: 1fr; /* map takes full width */
       }
     }
+
   </style>
 </head>
 <body>
@@ -530,10 +529,9 @@
       const wikiUrl = p.wiki_url || null;
 
       const labelPieces = [];
-      if (occupation) labelPieces.push(occupation);
       if (birthYear) labelPieces.push(`b. ${birthYear}`);
 
-      const labelText = labelPieces.join(' • ');
+      const labelText = labelPieces.join('');
 
       return `
         <div class="person-card">
@@ -637,6 +635,11 @@
 
     // CLICK: update people panel
     map.on('click', 'notability-fill', (e) => {
+      // Disable clicks on mobile (sidebar hidden)
+      if (window.innerWidth < 900) {
+        return;
+      }
+  
       const f = e.features && e.features[0];
       if (!f) return;
 
