@@ -1,0 +1,26 @@
+# Ignore R data files
+*.Rda
+*.rda
+
+# Ignore raw CSV or other data-generation files
+data/*.csv
+data/create_data.R
+data/county_shapefile_1990.Rda
+data/notability_rates.Rda
+data/usa_notables_counties.Rda
+data/eglp_county_crosswalk_endyr_1990.csv
+
+# Ignore anything except the final web-ready JSON/GeoJSON
+!data/counties_notability.geojson
+!data/county_people.json
+
+# Ignore R session files
+.Rproj.user/
+.Rhistory
+.RData
+
+# Ignore macOS cruft
+.DS_Store
+
+# Ignore Windows cruft
+Thumbs.db
